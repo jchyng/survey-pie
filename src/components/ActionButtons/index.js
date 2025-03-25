@@ -1,40 +1,50 @@
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import Button from '../Button';
 
 export default function ActionButtons({ questionLength, step }) {
   const isLastStep = step === questionLength - 1;
   const navigate = useNavigate();
 
   return (
-    <div>
+    <ActionButtonsWrapper>
       {step === 0 || (
-        <button
-          type="button"
+        <Button
+          type="SECONDARY"
           onClick={() => {
             navigate(`${step - 1}`);
           }}
         >
           이전
-        </button>
+        </Button>
       )}
       {isLastStep ? (
-        <button
-          type="button"
+        <Button
+          type="PRIMARY"
           onClick={() => {
             navigate(`/done`);
           }}
         >
           제출
-        </button>
+        </Button>
       ) : (
-        <button
-          type="button"
+        <Button
+          type="PRIMARY"
           onClick={() => {
             navigate(`${step + 1}`);
           }}
         >
           다음
-        </button>
+        </Button>
       )}
-    </div>
+    </ActionButtonsWrapper>
   );
 }
+
+const ActionButtonsWrapper = styled.div`
+  margin-top: 72px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+`;
