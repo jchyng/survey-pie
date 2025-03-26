@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-function Item({ children, onChange }) {
+function Item({ children, onChange, checked }) {
   return (
     <ItemWrapper>
       <label htmlFor={`checkbox-${children}`}>
-        <input type="checkbox" id={`checkbox-${children}`} onChange={onChange} />
+        <input type="checkbox" id={`checkbox-${children}`} onChange={onChange} checked={checked} />
         <span />
         <div>{children}</div>
       </label>
@@ -48,23 +48,26 @@ const ItemWrapper = styled.div`
   }
 `;
 
-export default function SelectInput({ options, answer = [], setAnswers }) {
+export default function SelectInput({ options, answer = [], setAnswer }) {
   const handleChange = (isChecked, idx) => {
     if (isChecked) {
-      setAnswers([...answer, idx]);
+      setAnswer([...answer, idx]);
     } else {
-      setAnswers(answer.filter((item) => item !== idx));
+      setAnswer(answer.filter((item) => item !== idx));
     }
   };
 
   return (
     <SelectWrapper>
       {options.items.map((item, idx) => {
+        const uniqueKey = `${item}-${idx}`;
         return (
           <Item
+            key={uniqueKey}
             onChange={(e) => {
               handleChange(e.target.checked, idx);
             }}
+            checked={answer.includes(idx)}
           >
             {item}
           </Item>

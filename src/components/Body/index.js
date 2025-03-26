@@ -4,7 +4,7 @@ import SelectInput from '../SelectInput';
 import TextAreaInput from '../TextAreaInput';
 import TextInput from '../TextInput';
 
-export default function Body({ options, type, answer, setAnswers }) {
+export default function Body({ options, type, answer, setAnswer }) {
   let InputComponent = null;
 
   switch (type) {
@@ -23,7 +23,7 @@ export default function Body({ options, type, answer, setAnswers }) {
 
   return (
     <BodyWrapper>
-      <InputComponent options={options} answer={answer} setAnswers={setAnswers} />
+      <InputComponent options={options} answer={answer} setAnswer={setAnswer} />
     </BodyWrapper>
   );
 }

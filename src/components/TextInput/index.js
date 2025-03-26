@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export default function TextInput({ options, answer, setAnswers }) {
+export default function TextInput({ options, answer, setAnswer }) {
   return (
     <Input
       type="text"
       value={answer}
       placeholder={options.placeholder}
       onChange={(e) => {
-        setAnswers(e.target.value);
+        setAnswer(e.target.value);
       }}
     />
   );
